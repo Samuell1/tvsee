@@ -1,0 +1,21 @@
+RewriteEngine On
+
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+ErrorDocument 404 /404.html
+
+# stranky
+RewriteRule ^vytvoritnovyucet$ registration.php [N,QSA]
+
+RewriteRule ^serialy$ serialy.php [N,QSA]
+RewriteRule ^serial/(.*)/(.*)$ serial.php?id=$1&name=$2 [N,QSA]
+
+RewriteRule ^epizoda/(.*)/s(.*)e(.*)$ epizoda.php?name=$1&seria=$2&ep=$3 [N,QSA]
+
+# manager
+RewriteRule ^manager$ adminmanager/ [N,QSA]
+
+RewriteRule ^manager/serialy$ adminmanager/serialy.php [N,QSA]
+RewriteRule ^manager/epizody$ adminmanager/epizody.php [N,QSA]
